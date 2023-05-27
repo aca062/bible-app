@@ -1,1 +1,153 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://fonts.googleapis.com/css?family=Mulish");
+
+:root {
+    --clear: #ffe7b2;
+    --clear-90: #ffd376;
+    --clear-80: #ffc64a;
+    --clear-70: #ffb515;
+    --clear-60: #af7800;
+    --white: #ffffff;
+    --gray: #9092a4;
+    --titillium: "Titillium Web", Arial, Helvetica, sans-serif;
+    --krub: Krub, Arial, Helvetica, sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:after,
+*:before {
+    box-sizing: inherit;
+    font-family: inherit;
+}
+
+body {
+    margin: 0;
+    background: var(--clear);
+    font-family: "Mulish";
+    display: flex;
+    gap: 50px;
+}
+
+a {
+    text-decoration: none;
+}
+
+h2 {
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0;
+}
+
+h3 {
+    font-size: 25px;
+    font-weight: 700;
+    margin: 0;
+}
+
+h4 {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.no-background {
+    background: none;
+}
+
+mat-toolbar.section-header {
+    justify-content: space-between;
+    background: var(--blue);
+    margin: 0;
+    padding: 0;
+    margin-bottom: 40px;
+    align-items: flex-start;
+}
+
+mat-icon {
+    width: auto !important;
+    height: auto !important;
+}
+
+app-root {
+    width: 100%;
+}
+
+.grid-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+    grid-gap: 30px;
+    justify-content: space-around;
+    align-content: start;
+}
+
+@media (max-width: 800px) {
+    .grid-list {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .grid-list {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    }
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.forbidden {
+    cursor: not-allowed;
+}
+
+.clickable label {
+    pointer-events: none;
+}
+
+.mdc-dialog__surface {
+    background: none !important;
+}
+
+.game-container {
+    width: 100vw;
+    height: calc(100vh - 80px);
+    position: fixed;
+    bottom: 0;
+    background-color: var(--blue);
+    padding: 40px;
+    padding-top: 20px;
+    z-index: 1000;
+}
+
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background-color: var(--blue-80);
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: var(--blue-70);
+}
+
+@media (max-width: 800px) {
+    mat-toolbar.section-header {
+        flex-direction: column;
+        height: auto;
+        gap: 10px;
+    }
+}
