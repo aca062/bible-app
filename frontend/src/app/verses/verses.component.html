@@ -1,1 +1,54 @@
-<h2 class="title">Verses</h2>
+<div class="title-bar">
+    <h2>Verses</h2>
+</div>
+
+<div class="verse-selector">
+    <mat-form-field>
+        <mat-label>Bible book</mat-label>
+        <mat-select
+            [(ngModel)]="bibleBook"
+            (selectionChange)="getVerse()"
+            name="bibleBook"
+        >
+            <mat-option
+                *ngFor="let bibleBook of bibleBooks"
+                [value]="bibleBook"
+            >
+                {{ bibleBook }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="number-input">
+        <mat-label>Chapter</mat-label>
+        <input
+            (input)="getVerse()"
+            [(ngModel)]="chapterNumber"
+            name="chapterNumber"
+            type="number"
+            oninput="javascript: if (this.value.length > 4) this.value = this.value.slice(0, 4); this.value = Math.abs(this.value);"
+            matInput
+        />
+    </mat-form-field>
+    <mat-form-field class="number-input">
+        <mat-label>Verse</mat-label>
+        <input
+            (input)="getVerse()"
+            [(ngModel)]="verseNumber"
+            name="verseNumber"
+            type="number"
+            oninput="javascript: if (this.value.length > 4) this.value = this.value.slice(0, 4); this.value = Math.abs(this.value);"
+            matInput
+        />
+    </mat-form-field>
+</div>
+<div>
+    <b *ngIf="correctVerse; else error">
+        <h4>Verse {{ bibleBook }} {{ chapterNumber }}:{{ verseNumber }}</h4>
+        <i>
+            <p>{{ selectedVerse.text }}</p>
+        </i>
+    </b>
+    <ng-template #error>
+        <p *ngIf="bibleBook">The selected verse doesn't exists</p>
+    </ng-template>
+</div>

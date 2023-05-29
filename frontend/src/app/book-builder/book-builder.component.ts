@@ -29,13 +29,11 @@ export class BookBuilderComponent {
         private bookApi: BookApiService
     ) {}
 
-    bibleBooks: String[] = [
-        "Genesis",
-        "Exodus",
-        "Leviticus",
-        "Numbers",
-        "Deuteronomy",
-    ];
+    bibleBooks: String[] = [];
+
+    ngOnInit() {
+        this.bibleBooks = this.versesApi.bibleBooks;
+    }
 
     getVerse() {
         this.versesApi
