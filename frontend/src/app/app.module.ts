@@ -22,10 +22,11 @@ import {
 import { ErrorStateMatcher } from "@angular/material/core";
 import { NgIf } from "@angular/common";
 import { MatFormFieldModule } from "@angular/material/form-field";
-
+import { MatButtonModule } from "@angular/material/button";
 import { NgFor } from "@angular/common";
 import { MatSelectModule } from "@angular/material/select";
 import { provideAnimations } from "@angular/platform-browser/animations";
+import { BookBuilderComponent } from "./book-builder/book-builder.component";
 
 @NgModule({
     declarations: [
@@ -34,6 +35,7 @@ import { provideAnimations } from "@angular/platform-browser/animations";
         BookDetailComponent,
         VersesComponent,
         BookListComponent,
+        BookBuilderComponent,
     ],
     imports: [
         BrowserModule,
@@ -52,6 +54,7 @@ import { provideAnimations } from "@angular/platform-browser/animations";
         NgIf,
         NgFor,
         HttpClientModule,
+        MatButtonModule,
     ],
     providers: [provideAnimations()],
     bootstrap: [AppComponent],

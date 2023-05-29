@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable, catchError, map } from "rxjs";
+import { Observable, catchError, map, tap } from "rxjs";
 import { Book } from "../models/Book";
 
 @Injectable({
@@ -21,5 +21,9 @@ export class BookApiService {
                 return response._embedded.books;
             })
         );
+    }
+
+    addBook(book: Book): Observable<Book> {
+        return this.http.post<any>(this.bookUrl, book);
     }
 }

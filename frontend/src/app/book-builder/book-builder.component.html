@@ -1,0 +1,111 @@
+<div class="create-window">
+    <div class="left-side">
+        <div class="title-bar">
+            <h2>Create book</h2>
+            <button
+                mat-raised-button
+                class="primary"
+                [disabled]="!bookName"
+                (click)="createBook()"
+            >
+                Save
+            </button>
+            <button mat-raised-button class="cancel" routerLink="..">
+                Cancel
+            </button>
+        </div>
+        <form class="book-form">
+            <mat-form-field style="width: 300px">
+                <mat-label>Book name</mat-label>
+                <input
+                    matInput
+                    [(ngModel)]="bookName"
+                    placeholder="Ex. Mattew"
+                    name="bookName"
+                    maxlength="15"
+                />
+            </mat-form-field>
+
+            <div class="title-bar">
+                <h3>Add verses</h3>
+                <button
+                    mat-raised-button
+                    class="primary"
+                    [disabled]="!correctVerse"
+                    (click)="addVerse()"
+                >
+                    Add
+                </button>
+            </div>
+            <div class="verse-selector">
+                <mat-form-field>
+                    <mat-label>Bible book</mat-label>
+                    <mat-select
+                        [(ngModel)]="bibleBook"
+                        (selectionChange)="getVerse()"
+                        name="bibleBook"
+                    >
+                        <mat-option
+                            *ngFor="let bibleBook of bibleBooks"
+                            [value]="bibleBook"
+                        >
+                            {{ bibleBook }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="number-input">
+                    <mat-label>Chapter</mat-label>
+                    <input
+                        (input)="getVerse()"
+                        [(ngModel)]="chapterNumber"
+                        name="chapterNumber"
+                        type="number"
+                        oninput="javascript: if (this.value.length > 4) this.value = this.value.slice(0, 4); this.value = Math.abs(this.value);"
+                        matInput
+                    />
+                </mat-form-field>
+                <mat-form-field class="number-input">
+                    <mat-label>Verse</mat-label>
+                    <input
+                        (input)="getVerse()"
+                        [(ngModel)]="verseNumber"
+                        name="verseNumber"
+                        type="number"
+                        oninput="javascript: if (this.value.length > 4) this.value = this.value.slice(0, 4); this.value = Math.abs(this.value);"
+                        matInput
+                    />
+                </mat-form-field>
+            </div>
+            <div>
+                <b *ngIf="correctVerse; else error">
+                    <h4>
+                        Verse {{ bibleBook }} {{ chapterNumber }}:{{
+                            verseNumber
+                        }}
+                    </h4>
+                    <i>
+                        <p>{{ selectedVerse.text }}</p>
+                    </i>
+                </b>
+                <ng-template #error>
+                    <p *ngIf="bibleBook">The selected verse doesn't exists</p>
+                </ng-template>
+            </div>
+        </form>
+    </div>
+    <div class="right-side">
+        <div class="title-bar">
+            <h3>Verses in the book {{ bookName }}</h3>
+        </div>
+        <b *ngFor="let verse of bookVerses">
+            <h4>
+                Verse {{ verse.book_name }} {{ verse.chapter }}:{{
+                    verse.verse
+                }}
+            </h4>
+            <i>
+                <p>{{ verse.text }}</p>
+            </i>
+        </b>
+    </div>
+</div>

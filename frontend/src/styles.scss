@@ -72,22 +72,10 @@ app-root {
 
 .grid-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-gap: 30px;
     justify-content: space-around;
     align-content: start;
-}
-
-@media (max-width: 800px) {
-    .grid-list {
-        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    }
-}
-
-@media (max-width: 650px) {
-    .grid-list {
-        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-    }
 }
 
 .clickable {
@@ -106,27 +94,27 @@ app-root {
     background: none !important;
 }
 
-.game-container {
-    width: 100vw;
-    height: calc(100vh - 80px);
-    position: fixed;
-    bottom: 0;
-    background-color: var(--blue);
-    padding: 40px;
-    padding-top: 20px;
-    z-index: 1000;
+.title-bar {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    margin-bottom: 25px;
 }
 
 *::-webkit-scrollbar {
     width: 12px;
 }
 
-*::-webkit-scrollbar-track {
-    border-radius: 8px;
-    background-color: var(--blue-80);
+button.primary {
+    transition: background-color 0.4s ease;
+    background-color: var(--clear-90) !important;
 }
 
-*::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background-color: var(--blue-70);
+button.cancel {
+    transition: background-color 0.4s ease;
+    background-color: #ffa2a2 !important;
+}
+
+button.primary:disabled {
+    background-color: rgb(204, 204, 204) !important;
 }

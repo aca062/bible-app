@@ -1,0 +1,28 @@
+.verse-selector {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.create-window {
+    display: flex;
+    gap: 20px;
+}
+
+.number-input {
+    width: 100px;
+}
+
+.left-side {
+    width: 50%;
+}
+
+.right-side {
+    width: 50%;
+}
+
+@media (max-width: 1140px) {
+    .create-window {
+        display: block;
+    }
+}

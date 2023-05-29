@@ -1,0 +1,9 @@
+.add-button {
+    max-width: 30px;
+    fill: #ffffff00;
+    transition: fill 0.4s ease;
+}
+
+.add-button:hover {
+    fill: var(--clear-90);
+}

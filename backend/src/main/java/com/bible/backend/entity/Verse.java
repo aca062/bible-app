@@ -2,9 +2,6 @@ package com.bible.backend.entity;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,7 +15,7 @@ public class Verse implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	private String bookName;
+	private String book_name;
 
 	private Number chapter;
 
@@ -29,15 +26,15 @@ public class Verse implements Serializable {
 	public Verse() {
 	}
 
-	public Verse(String bookName, Number chapter, Number verse, String text) {
-		this.bookName = bookName;
+	public Verse(String book_name, Number chapter, Number verse, String text) {
+		this.book_name = book_name;
 		this.chapter = chapter;
 		this.verse = verse;
 		this.text = text;
 	}
 
-	public String getbookName() {
-		return bookName;
+	public String getbook_name() {
+		return book_name;
 	}
 
 	public String getText() {
@@ -48,8 +45,8 @@ public class Verse implements Serializable {
 		this.text = text;
 	}
 
-	public void setbookName(String bookName) {
-		this.bookName = bookName;
+	public void setbook_name(String book_name) {
+		this.book_name = book_name;
 	}
 
 	public Number getChapter() {
