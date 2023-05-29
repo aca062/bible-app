@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { BookApiService } from "../services/book-api.service";
 import { VersesApiService } from "../services/verses-api.service";
 import { catchError } from "rxjs";
@@ -23,16 +23,35 @@ export class BookBuilderComponent {
 
     correctVerse: Boolean = false;
 
+    edit: Boolean = false;
+    loading: Boolean = true;
+    originalBookName?: String;
+    id?: Number;
+
     constructor(
         private router: Router,
+        private route: ActivatedRoute,
         private versesApi: VersesApiService,
         private bookApi: BookApiService
     ) {}
 
     bibleBooks: String[] = [];
 
-    ngOnInit() {
+    async ngOnInit() {
         this.bibleBooks = this.versesApi.bibleBooks;
+        const bookId = parseInt(
+            String(this.route.snapshot.paramMap.get("bookId"))
+        );
+        if (bookId) {
+            await this.bookApi.getBook(bookId).subscribe((result) => {
+                this.edit = true;
+                this.id = result.id;
+                this.bookName = result.name;
+                this.originalBookName = result.name;
+                this.bookVerses = result.verses;
+            });
+        }
+        this.loading = false;
     }
 
     getVerse() {
@@ -61,7 +80,30 @@ export class BookBuilderComponent {
             } as Book)
             .subscribe((response) => {
                 const addedBook = response;
-                this.router.navigate([`/books/${addedBook.id}/details`]);
+                this.router.navigate([`/books/${addedBook.id}`]);
             });
+    }
+
+    editBook() {
+        this.bookApi
+            .editBook(
+                {
+                    name: this.bookName,
+                    verses: this.bookVerses,
+                } as Book,
+                this.id!
+            )
+            .subscribe((response) => {
+                const addedBook = response;
+                this.router.navigate([`/books/${addedBook.id}`]);
+            });
+    }
+
+    deleteVerse(id: number) {
+        if (id === 0) {
+            this.bookVerses.shift();
+        } else {
+            this.bookVerses.splice(id, id);
+        }
     }
 }

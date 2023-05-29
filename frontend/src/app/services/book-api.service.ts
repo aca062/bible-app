@@ -26,4 +26,16 @@ export class BookApiService {
     addBook(book: Book): Observable<Book> {
         return this.http.post<any>(this.bookUrl, book);
     }
+
+    editBook(book: Book, id: Number): Observable<Book> {
+        return this.http.put<any>(`${this.bookUrl}/${id}`, book);
+    }
+
+    deleteBook(id: number): Observable<Book> {
+        return this.http.delete<any>(`${this.bookUrl}/${id}`);
+    }
+
+    getBook(id: Number): Observable<Book> {
+        return this.http.get<any>(`${this.bookUrl}/${id}`);
+    }
 }

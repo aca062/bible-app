@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { Verse } from "../models/Verse";
 import { VersesApiService } from "../services/verses-api.service";
+import { ScrapperService } from "../services/scrapper.service";
+import { ImageScrapping } from "../models/ImageScrapping";
 
 @Component({
     selector: "app-verses",
@@ -16,12 +18,18 @@ export class VersesComponent {
 
     selectedVerse!: Verse;
 
-    constructor(private versesApi: VersesApiService) {}
+    imagePath!: String;
+
+    constructor(
+        private versesApi: VersesApiService,
+        private imageService: ScrapperService
+    ) {}
 
     bibleBooks: String[] = [];
 
     ngOnInit() {
         this.bibleBooks = this.versesApi.bibleBooks;
+        this.getImage();
     }
 
     getVerse() {
@@ -36,5 +44,13 @@ export class VersesComponent {
                     this.correctVerse = false;
                 },
             });
+    }
+
+    getImage() {
+        this.imageService.getImagePath().subscribe({
+            next: (response) => {
+                this.imagePath = response.path;
+            },
+        });
     }
 }

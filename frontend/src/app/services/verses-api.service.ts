@@ -62,9 +62,7 @@ export class VersesApiService {
         verse: Number
     ): Observable<Verse> {
         return this.http
-            .get<any>(
-                this.bibleApiUrl + book_name + " " + chapter + ":" + verse
-            )
+            .get<any>(`${this.bibleApiUrl}/${book_name} ${chapter}:${verse}`)
             .pipe(
                 map((response) => {
                     return response.verses[0];

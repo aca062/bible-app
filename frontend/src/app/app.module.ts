@@ -27,6 +27,12 @@ import { NgFor } from "@angular/common";
 import { MatSelectModule } from "@angular/material/select";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { BookBuilderComponent } from "./book-builder/book-builder.component";
+import {
+    MatDialog,
+    MAT_DIALOG_DATA,
+    MatDialogRef,
+    MatDialogModule,
+} from "@angular/material/dialog";
 
 @NgModule({
     declarations: [
@@ -55,6 +61,7 @@ import { BookBuilderComponent } from "./book-builder/book-builder.component";
         NgFor,
         HttpClientModule,
         MatButtonModule,
+        MatDialogModule,
     ],
     providers: [provideAnimations()],
     bootstrap: [AppComponent],

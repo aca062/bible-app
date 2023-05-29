@@ -4,7 +4,7 @@
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        class="add-button clickable"
+        class="button clickable"
         routerLink="add"
     >
         <g id="Edit / Add_Plus_Circle">
@@ -21,5 +21,10 @@
 </div>
 
 <div class="grid-list">
-    <app-book *ngFor="let book of books" [name]="book.name"></app-book>
+    <app-book
+        *ngFor="let book of books"
+        [book]="book"
+        class="clickable"
+        routerLink="/books/{{ book.id }}"
+    ></app-book>
 </div>
