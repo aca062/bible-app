@@ -5,6 +5,7 @@ import { catchError } from "rxjs";
 import { Verse } from "../models/Verse";
 import { Book } from "../models/Book";
 import { ActivatedRoute, Router } from "@angular/router";
+import { isEqual, pick } from "lodash";
 
 @Component({
     selector: "app-book-builder",
@@ -71,7 +72,18 @@ export class BookBuilderComponent {
     }
 
     addVerse() {
-        this.bookVerses.push(this.selectedVerse);
+        const commonFields = ["book_name", "chapter", "text", "verse"];
+        const verseExists = this.bookVerses.find((verse) =>
+            isEqual(
+                pick(verse, commonFields),
+                pick(this.selectedVerse, commonFields)
+            )
+        );
+        if (!verseExists) {
+            this.bookVerses.push(this.selectedVerse);
+        } else {
+            alert("That verse has already been added to the book");
+        }
     }
 
     createBook() {

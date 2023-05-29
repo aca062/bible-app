@@ -11,6 +11,9 @@ import { Book } from "../models/Book";
 })
 export class BookListComponent implements OnInit {
     books: Book[] = [];
+
+    isLoading: Boolean = true;
+
     constructor(private bookService: BookApiService) {}
 
     ngOnInit(): void {
@@ -18,6 +21,8 @@ export class BookListComponent implements OnInit {
     }
 
     getBooks(): void {
-        this.bookService.getBooks().subscribe((books) => (this.books = books));
+        this.bookService.getBooks().subscribe((books) => {
+            this.books = books;
+        });
     }
 }

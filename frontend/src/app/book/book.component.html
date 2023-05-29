@@ -1,3 +1,8 @@
 <div>
     <h3>{{ book.name }}</h3>
+    <p *ngFor="let number of [0, 1, 2]">
+        {{ book.verses[number].book_name }} {{ book.verses[number].chapter }}:{{
+            book.verses[number].verse
+        }}
+    </p>
 </div>
