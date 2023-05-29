@@ -1,2 +1,28 @@
-<h1>{{ title }}</h1>
-<app-book name="Prueba"></app-book>
+<div class="topbar">
+    <h1>{{ title }}</h1>
+</div>
+<div class="sidebar">
+    <nav class="nav">
+        <ul>
+            <li [class.active]="activeLink === 'books'">
+                <a
+                    (click)="setActiveLink('books')"
+                    routerLink="/books"
+                    routerLinkActive="router-link-active"
+                    >Books</a
+                >
+            </li>
+            <li [class.active]="activeLink === 'verses'">
+                <a
+                    (click)="setActiveLink('verses')"
+                    routerLink="/verses"
+                    routerLinkActive="router-link-active"
+                    >Verses</a
+                >
+            </li>
+        </ul>
+    </nav>
+</div>
+<div class="content">
+    <router-outlet></router-outlet>
+</div>
