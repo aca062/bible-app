@@ -1,12 +1,12 @@
 <div class="create-window" *ngIf="!loading">
     <div class="left-side">
         <div class="title-bar">
-            <h2 *ngIf="!edit" else #titleEdit>Create a book</h2>
-            <h2 #titleEdit>Edit the book {{ originalBookName }}</h2>
+            <h2 *ngIf="!edit; else titleEdit">Create a book</h2>
+            <ng-template #titleEdit>
+                <h2>Edit the book {{ originalBookName }}</h2>
+            </ng-template>
             <button
-                *ngIf="!edit"
-                else
-                #buttonEdit
+                *ngIf="!edit; else buttonEdit"
                 mat-raised-button
                 class="primary"
                 [disabled]="!bookName"
@@ -14,19 +14,21 @@
             >
                 Save
             </button>
-            <button
-                #buttonEdit
-                mat-raised-button
-                class="primary"
-                [disabled]="!bookName"
-                (click)="editBook()"
-            >
-                Save changes
-            </button>
+            <ng-template #buttonEdit>
+                <button
+                    mat-raised-button
+                    class="primary"
+                    [disabled]="!bookName"
+                    (click)="editBook()"
+                >
+                    Save changes
+                </button>
+            </ng-template>
             <button mat-raised-button class="cancel" routerLink="..">
                 Cancel
             </button>
         </div>
+
         <form class="book-form">
             <mat-form-field style="width: 300px">
                 <mat-label>Book name</mat-label>
@@ -108,7 +110,12 @@
     </div>
     <div class="right-side">
         <div class="title-bar">
-            <h3>Verses in the book {{ bookName }}</h3>
+            <h3 *ngIf="!edit; else versesEdit">
+                Verses in the book {{ bookName }}
+            </h3>
+            <ng-template #versesEdit
+                ><h3>Verses in the book {{ originalBookName }}</h3>
+            </ng-template>
         </div>
         <b *ngFor="let verse of bookVerses; let i = index">
             <h4>

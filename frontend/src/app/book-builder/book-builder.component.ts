@@ -49,9 +49,11 @@ export class BookBuilderComponent {
                 this.bookName = result.name;
                 this.originalBookName = result.name;
                 this.bookVerses = result.verses;
+                this.loading = false;
             });
+        } else {
+            this.loading = false;
         }
-        this.loading = false;
     }
 
     getVerse() {
