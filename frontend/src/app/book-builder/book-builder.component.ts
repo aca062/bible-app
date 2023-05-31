@@ -5,7 +5,7 @@ import { catchError } from "rxjs";
 import { Verse } from "../models/Verse";
 import { Book } from "../models/Book";
 import { ActivatedRoute, Router } from "@angular/router";
-import { isEqual, pick } from "lodash";
+import { isEqual, pick } from "lodash-es";
 
 @Component({
     selector: "app-book-builder",
