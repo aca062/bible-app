@@ -11,8 +11,8 @@ import { ImageScrapping } from "../models/ImageScrapping";
 })
 export class VersesComponent {
     bibleBook: String = "";
-    chapterNumber: Number = 0;
-    verseNumber: Number = 0;
+    chapterNumber: Number = 1;
+    verseNumber: Number = 1;
 
     correctVerse: Boolean = false;
 
@@ -40,7 +40,7 @@ export class VersesComponent {
                     this.selectedVerse = response;
                     this.correctVerse = true;
                 },
-                error: (error) => {
+                error: () => {
                     this.correctVerse = false;
                 },
             });

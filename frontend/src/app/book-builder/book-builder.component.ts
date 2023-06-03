@@ -18,8 +18,8 @@ export class BookBuilderComponent {
     bookVerses: Verse[] = [];
 
     bibleBook: String = "";
-    chapterNumber: Number = 0;
-    verseNumber: Number = 0;
+    chapterNumber: Number = 1;
+    verseNumber: Number = 1;
     selectedVerse!: Verse;
 
     correctVerse: Boolean = false;
@@ -65,7 +65,7 @@ export class BookBuilderComponent {
                     this.selectedVerse = response;
                     this.correctVerse = true;
                 },
-                error: (error) => {
+                error: () => {
                     this.correctVerse = false;
                 },
             });

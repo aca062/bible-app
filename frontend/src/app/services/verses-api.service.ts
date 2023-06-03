@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, map } from "rxjs";
+import { Observable, catchError, map, throwError } from "rxjs";
 import { Verse } from "../models/Verse";
 
 @Injectable({
@@ -67,6 +67,9 @@ export class VersesApiService {
             .pipe(
                 map((response) => {
                     return response.verses[0];
+                }),
+                catchError((error) => {
+                    return throwError(() => error);
                 })
             );
     }

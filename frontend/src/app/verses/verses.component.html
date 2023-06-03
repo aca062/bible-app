@@ -29,7 +29,7 @@
                 [(ngModel)]="chapterNumber"
                 name="chapterNumber"
                 type="number"
-                oninput="javascript: if (this.value.length > 4) this.value = this.value.slice(0, 4); this.value = Math.abs(this.value);"
+                oninput="javascript: if (this.value.length > 3) this.value = this.value.slice(0, 3); this.value = Math.abs(this.value); if (this.value == 0) this.value = 1"
                 matInput
             />
         </mat-form-field>
@@ -40,7 +40,7 @@
                 [(ngModel)]="verseNumber"
                 name="verseNumber"
                 type="number"
-                oninput="javascript: if (this.value.length > 4) this.value = this.value.slice(0, 4); this.value = Math.abs(this.value);"
+                oninput="javascript: if (this.value.length > 3) this.value = this.value.slice(0, 3); this.value = Math.abs(this.value); if (this.value == 0) this.value = 1"
                 matInput
             />
         </mat-form-field>

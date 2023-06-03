@@ -20,11 +20,17 @@
     </svg>
 </div>
 
-<div class="grid-list">
-    <app-book
-        *ngFor="let book of books"
-        [book]="book"
-        class="clickable"
-        routerLink="/books/{{ book.id }}"
-    ></app-book>
+<div *ngIf="books.length != 0; else noVerses">
+    <div class="grid-list" *ngIf="!isLoading">
+        <app-book
+            *ngFor="let book of books"
+            [book]="book"
+            class="clickable"
+            routerLink="/books/{{ book.id }}"
+        ></app-book>
+    </div>
 </div>
+
+<ng-template #noVerses>
+    <p>There's no books created yet</p>
+</ng-template>

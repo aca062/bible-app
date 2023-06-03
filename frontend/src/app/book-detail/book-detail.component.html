@@ -78,12 +78,19 @@
     <div class="title-bar">
         <h3>Verses</h3>
     </div>
-    <b *ngFor="let verse of book.verses">
-        <h4>
-            Verse {{ verse.book_name }} {{ verse.chapter }}:{{ verse.verse }}
-        </h4>
-        <i>
-            <p>{{ verse.text }}</p>
-        </i>
-    </b>
+    <div *ngIf="book.verses.length > 0; else noVerses">
+        <b *ngFor="let verse of book.verses">
+            <h4>
+                Verse {{ verse.book_name }} {{ verse.chapter }}:{{
+                    verse.verse
+                }}
+            </h4>
+            <i>
+                <p>{{ verse.text }}</p>
+            </i>
+        </b>
+    </div>
+    <ng-template #noVerses>
+        <p>There's no verses in this book yet</p>
+    </ng-template>
 </div>

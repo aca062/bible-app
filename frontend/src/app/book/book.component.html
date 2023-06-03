@@ -1,8 +1,15 @@
-<div>
-    <h3>{{ book.name }}</h3>
-    <p *ngFor="let number of [0, 1, 2]">
-        {{ book.verses[number].book_name }} {{ book.verses[number].chapter }}:{{
-            book.verses[number].verse
-        }}
-    </p>
+<div class="card">
+    <div style="height: fit-content">
+        <h3>{{ book.name }}</h3>
+    </div>
+    <div *ngIf="previewVerses.length > 0; else noVerses" style="padding: 0">
+        <p *ngFor="let number of previewVerses">
+            {{ book.verses[number].book_name }}
+            {{ book.verses[number].chapter }}:{{ book.verses[number].verse }}
+        </p>
+    </div>
+    <ng-template #noVerses>
+        <p style="margin: 0">There's no verses in this</p>
+        <p style="margin: 0">book yet</p>
+    </ng-template>
 </div>
