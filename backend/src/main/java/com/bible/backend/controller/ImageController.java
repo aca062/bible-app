@@ -12,7 +12,8 @@ import com.bible.backend.dto.ImageDto;
 import com.bible.backend.services.ImageService;
 
 /**
- * Controlador para gestionar las solicitudes relacionadas con las imágenes.
+ * Controlador para gestionar las solicitudes relacionadas con las imágenes
+ * que se obtienen a través del servicio de scrapping.
  * Permite el acceso desde la URL http://localhost:4200.
  */
 @CrossOrigin(origins = "http://localhost:4200")
